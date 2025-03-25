@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 796973486004.dkr.ecr.us-east-1.amazonaws.com
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t studye-back .
+      - docker tag studye-back:latest 796973486004.dkr.ecr.us-east-1.amazonaws.com/studye-back:latest
+      - docker push 796973486004.dkr.ecr.us-east-1.amazonaws.com/studye-back:latest
+  post_build:
+    commands:
+      - echo Writing image definitions file...
+      - printf '[{"name":"studye-backend","imageUri":"%s"}]' 796973486004.dkr.ecr.us-east-1.amazonaws.com/studye-back:latest > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json
