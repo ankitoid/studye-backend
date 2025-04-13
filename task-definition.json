@@ -1,0 +1,102 @@
+{
+
+    "family": "studye-task",
+    
+    "containerDefinitions": [
+    
+    {
+    
+        "name": "studye-container",
+        
+        "image": "796973486004.dkr.ecr.us-east-1.amazonaws.com/studye:1",
+        
+        "cpu": 0,
+    
+    "portMappings": [
+    
+    {
+    
+        "name": "studye-container-5000-tcp",
+        
+        "containerPort": 5000,
+        
+        "hostPort": 5000,
+        
+        "protocol": "tcp",
+        
+        "appProtocol": "http"
+        
+    }
+    
+    ],
+    
+        "essential": true,
+        
+       "environment": [
+        {
+            "name": "MONGO_URI",
+            "value": "mongodb+srv://ankitsingh626522:V1itRTJqZZKW4EJ6@cab-cluster.j7yed.mongodb.net/"
+        }
+],
+        
+        "environmentFiles": [],
+        
+        "mountPoints": [],
+        
+        "volumesFrom": [],
+        
+        "ulimits": [],
+        
+        "logConfiguration": {
+        
+        "logDriver": "awslogs",
+        
+        "options": {
+        
+        "awslogs-group": "/ecs/studye-task",
+        
+        "mode": "non-blocking",
+        
+        "awslogs-create-group": "true",
+        
+        "max-buffer-size": "25m",
+        
+        "awslogs-region": "us-east-1",
+        
+        "awslogs-stream-prefix": "ecs"
+        
+    },
+    
+        "secretOptions": []
+    
+    },
+    
+        "systemControls": []
+    
+    }
+    
+    ],
+    
+        "executionRoleArn": "arn:aws:iam::796973486004:role/ecsTaskExecutionRole",
+        
+        "networkMode": "awsvpc",
+        
+        "requiresCompatibilities": ["EC2"],
+        
+        "cpu": "1024",
+        
+        "memory": "3072",
+        
+        "runtimePlatform": {
+        
+        "cpuArchitecture": "X86_64",
+        
+        "operatingSystemFamily": "LINUX"
+        
+        },
+        
+        "volumes": [],
+        
+        "placementConstraints": []
+        
+    }
