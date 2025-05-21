@@ -1,10 +1,9 @@
-// routes/signUpRoutes.js
-
 const express = require('express');
-const router = express.Router();
 const { signUpController } = require('../controllers/signUpController');
+const { loginController } = require('../controllers/loginController');
+const router = express.Router();
 
-// Route for sign-up POST request
-router.post('/', signUpController);
+router.post('/signup', signUpController);
+router.post('/login', loginController);
 
 module.exports = router;
